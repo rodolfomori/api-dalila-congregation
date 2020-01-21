@@ -28,6 +28,14 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.belongsTo(models.Group, { foreignKey: 'group_id', as: 'group' });
+    this.belongsTo(models.Publisher, {
+      foreignKey: 'publisher_id',
+      as: 'publisher',
+    });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }

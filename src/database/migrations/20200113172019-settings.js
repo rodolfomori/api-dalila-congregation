@@ -1,23 +1,27 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('meetings', {
+    return queryInterface.createTable('settings', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
       midweek: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      special_week: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      weekend: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      midweek_time: {
+        type: Sequelize.TIME,
+        allowNull: false,
+      },
+      weekend_time: {
+        type: Sequelize.TIME,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -31,6 +35,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('meetings');
+    return queryInterface.dropTable('settings');
   },
 };

@@ -13,7 +13,7 @@ module.exports = {
       },
       group_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'groups', key: 'id' },
+        references: { model: 'groups', key: 'id' }, // users belongs to group
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
@@ -31,6 +31,11 @@ module.exports = {
       pioneer: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
+        allowNull: false,
+      },
+      baptized: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
         allowNull: false,
       },
       created_at: {

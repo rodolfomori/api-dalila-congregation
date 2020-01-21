@@ -1,5 +1,7 @@
 import './database';
 
+import './app/services/meetingsServices';
+
 import express from 'express';
 
 import routes from './routes';

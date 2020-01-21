@@ -31,7 +31,9 @@ class GroupController {
   }
 
   async index(req, res) {
-    const groups = await Group.findAll();
+    const groups = await Group.findAll({
+      include: { association: 'publishers' },
+    });
 
     return res.json(groups);
   }

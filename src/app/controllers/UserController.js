@@ -42,6 +42,8 @@ class UserController {
       elder: Yup.boolean(),
       ministerial_servant: Yup.boolean(),
       admin: Yup.boolean(),
+      group_id: Yup.string(),
+      publisher_id: Yup.string(),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
@@ -57,12 +59,19 @@ class UserController {
       return res.status(400).json({ error: 'Validations fails' });
     }
 
-    const { email, oldPassword, admin, ministerial_servant, elder } = req.body;
+    const {
+      email,
+      oldPassword,
+      admin,
+      ministerial_servant,
+      elder,
+      group_id,
+      publisher_id,
+    } = req.body;
 
     const user = await User.findByPk(req.userId);
 
     if (admin) {
-      console.log(user);
       if (user.admin === false) {
         return res
           .status(400)
@@ -93,6 +102,8 @@ class UserController {
       admin,
       ministerial_servant,
       elder,
+      group_id,
+      publisher_id,
     });
   }
 
