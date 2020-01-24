@@ -13,9 +13,3 @@ module.exports = {
     return queryInterface.removeColumn('users', 'publisher_id');
   },
 };
-
-
-
-
-
-

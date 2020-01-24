@@ -1,6 +1,6 @@
 import './database';
 
-import './app/services/meetingsServices';
+import './app/services/schedule';
 
 import express from 'express';
 
