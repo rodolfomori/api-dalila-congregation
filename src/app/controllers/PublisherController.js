@@ -27,6 +27,7 @@ class PublisherController {
       elder,
       ministerial_servant,
       pioneer,
+      baptized,
     } = await Publisher.create(req.body, {
       include: [
         {
@@ -43,6 +44,7 @@ class PublisherController {
       elder,
       ministerial_servant,
       pioneer,
+      baptized,
     });
   }
 
@@ -102,6 +104,14 @@ class PublisherController {
     });
 
     return res.json(publishers);
+  }
+
+  async show(req, res) {
+    const publisher = await Publisher.findOne({
+      where: { id: req.params.id },
+    });
+
+    return res.json(publisher);
   }
 }
 

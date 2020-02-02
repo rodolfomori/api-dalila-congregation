@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Assistance from '../models/Assistance';
 
 class AssistanceController {
@@ -26,6 +27,29 @@ class AssistanceController {
       publisher,
       meeting,
     });
+  }
+
+  async update(req, res) {
+    const meetingID = req.params.meeting_id;
+
+    const publishers = req.body.present_publishers;
+
+    publishers.map(
+      async publisher =>
+        await Assistance.update(
+          { present: true },
+          {
+            where: {
+              [Op.and]: [
+                { meeting_id: meetingID },
+                { publisher_id: publisher },
+              ],
+            },
+          }
+        )
+    );
+
+    return res.json({ message: 'WORKS' });
   }
 
   async index(req, res) {

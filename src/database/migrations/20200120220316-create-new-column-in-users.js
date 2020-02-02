@@ -13,5 +13,3 @@ module.exports = {
     return queryInterface.removeColumn('users', 'group_id');
   },
 };
-
-

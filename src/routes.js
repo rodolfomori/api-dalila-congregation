@@ -18,7 +18,9 @@ routes.post('/users', UserController.store);
 routes.use(authMiddleware); // MIDDLEWARE TOKEN JWT
 
 routes.get('/groups', GroupController.index);
+routes.get('/groups/:id', GroupController.show);
 routes.post('/groups', GroupController.store);
+routes.put('/groups/:id', GroupController.update);
 
 routes.get('/users', UserController.index);
 routes.put('/users', UserController.update);
@@ -33,11 +35,13 @@ routes.get('/settings', SettingController.index);
 routes.post('/publishers', PublisherController.store);
 routes.put('/publishers/:id', PublisherController.update);
 routes.get('/publishers', PublisherController.index);
+routes.get('/publishers/:id', PublisherController.show);
 
 routes.get('/meetings', MeetingController.index);
 routes.post('/meetings', MeetingController.store);
 
 routes.get('/assistance', AssistanceController.index);
 routes.post('/assistance', AssistanceController.store);
+routes.put('/assistance/:meeting_id', AssistanceController.update);
 
 export default routes;

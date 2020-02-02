@@ -4,6 +4,7 @@ module.exports = {
       'settings',
       [
         {
+          id: 1001,
           weekend: 6,
           midweek: 2,
           weekend_time: '20:00',
