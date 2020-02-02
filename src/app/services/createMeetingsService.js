@@ -10,8 +10,9 @@ export async function createMidweekMeeting() {
   // console.log(midweek, weekend, midweek_time, weekend_time);
 
   const meetingMidweekDate = `${getYear(new Date())}-0${getMonth(new Date()) +
-    1}-${getDate(new Date()) + midweek}T${midweek_time}-03:00`;
+    1}-0${getDate(new Date()) + midweek}T${midweek_time}-03:00`;
 
+  console.log(meetingMidweekDate);
   const { id } = await Meeting.create({
     date: meetingMidweekDate,
     midweek: true,
@@ -29,7 +30,7 @@ export async function createWeekendMeeting() {
   });
 
   const meetingWeekendDate = `${getYear(new Date())}-0${getMonth(new Date()) +
-    1}-${getDate(new Date()) + weekend}T${weekend_time}-03:00`;
+    1}-0${getDate(new Date()) + weekend}T${weekend_time}-03:00`;
 
   const { id } = await Meeting.create({
     date: meetingWeekendDate,

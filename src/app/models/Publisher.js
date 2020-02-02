@@ -8,6 +8,7 @@ class Publisher extends Model {
         elder: Sequelize.BOOLEAN,
         ministerial_servant: Sequelize.BOOLEAN,
         pioneer: Sequelize.BOOLEAN,
+        baptized: Sequelize.BOOLEAN,
       },
       {
         sequelize,

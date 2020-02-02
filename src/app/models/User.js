@@ -9,8 +9,6 @@ class User extends Model {
         email: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
-        elder: Sequelize.BOOLEAN,
-        ministerial_servant: Sequelize.BOOLEAN,
         admin: Sequelize.BOOLEAN,
       },
       {
@@ -29,7 +27,7 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Group, { foreignKey: 'group_id', as: 'group' });
+    // this.belongsTo(models.Group, { foreignKey: 'group_id', as: 'group' });
     this.belongsTo(models.Publisher, {
       foreignKey: 'publisher_id',
       as: 'publisher',
