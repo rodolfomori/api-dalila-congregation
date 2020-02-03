@@ -21,7 +21,7 @@ class Group extends Model {
       foreignKey: 'group_id',
       as: 'publishers',
     });
-    this.hasMany(models.User, { foreignKey: 'group_id', as: 'users' });
+    // this.hasMany(models.User, { foreignKey: 'group_id', as: 'users' });
   }
 }
 

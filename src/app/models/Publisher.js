@@ -24,6 +24,11 @@ class Publisher extends Model {
       foreignKey: 'publisher_id',
       as: 'assistances',
     });
+
+    this.hasOne(models.User, {
+      foreignKey: 'publisher_id',
+      as: 'publisher',
+    });
   }
 }
 

@@ -62,10 +62,22 @@ class GroupController {
   }
 
   async show(req, res) {
-    const group = await Group.findOne({ where: { id: req.params.id } });
+    const group = await Group.findOne({
+      where: { id: req.params.id },
+      include: { association: 'publishers' },
+    });
 
     return res.json(group);
   }
+
+  // async show(req, res) {
+  //   const group = await Group.findOne({
+  //     where: { number: req.params.number },
+  //     include: { association: 'publishers' },
+  //   });
+
+  //   return res.json(group);
+  // }
 }
 
 export default new GroupController();
