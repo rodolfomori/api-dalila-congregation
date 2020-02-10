@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/User';
+import Publisher from '../models/Publisher';
 
 class UserController {
   async store(req, res) {
@@ -11,6 +12,8 @@ class UserController {
       password: Yup.string()
         .required()
         .min(6),
+      publisher_id: Yup.number(),
+      admin: Yup.boolean(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -23,13 +26,16 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, name, email, provider } = await User.create(req.body);
+    const { id, name, admin, email, publisher_id } = await User.create(
+      req.body
+    );
 
     return res.json({
       id,
       name,
+      admin,
       email,
-      provider,
+      publisher_id,
     });
   }
 
@@ -39,10 +45,7 @@ class UserController {
       email: Yup.string()
         .email()
         .required(),
-      elder: Yup.boolean(),
-      ministerial_servant: Yup.boolean(),
       admin: Yup.boolean(),
-      group_id: Yup.string(),
       publisher_id: Yup.string(),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
@@ -108,7 +111,15 @@ class UserController {
   }
 
   async index(req, res) {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      include: [
+        {
+          model: Publisher,
+          as: 'publisher',
+          attributes: ['group_id', 'elder', 'ministerial_servant', 'pioneer'],
+        },
+      ],
+    });
 
     return res.json(users);
   }

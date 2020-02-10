@@ -40,7 +40,12 @@ routes.get('/publishers/:id', PublisherController.show);
 routes.get('/meetings', MeetingController.index);
 routes.post('/meetings', MeetingController.store);
 
-routes.get('/assistance', AssistanceController.index);
+// routes.get('/assistance', AssistanceController.index);
+routes.get(
+  '/assistance/meeting/:meeting_id/group/:group_id',
+  AssistanceController.index
+);
+
 routes.post('/assistance', AssistanceController.store);
 routes.put('/assistance/:meeting_id', AssistanceController.update);
 

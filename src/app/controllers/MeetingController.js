@@ -13,13 +13,13 @@ class MeetingController {
       return res.status(400).json({ error: 'Validations fails' });
     }
 
-    // const dateExists = await Meeting.findOne({
-    //   where: { date: req.body.date },
-    // });
+    const dateExists = await Meeting.findOne({
+      where: { date: req.body.date },
+    });
 
-    // if (dateExists) {
-    //   return res.status(400).json({ error: 'Date already exists.' });
-    // }
+    if (dateExists) {
+      return res.status(400).json({ error: 'Date already exists.' });
+    }
 
     const { date, midweek, special_week } = await Meeting.create(req.body);
 

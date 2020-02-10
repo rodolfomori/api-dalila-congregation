@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import Assistance from '../models/Assistance';
+import Publisher from '../models/Publisher';
 
 class AssistanceController {
   async store(req, res) {
@@ -30,30 +31,59 @@ class AssistanceController {
   }
 
   async update(req, res) {
+    console.log(req.body);
+    console.log(req.params);
+
     const meetingID = req.params.meeting_id;
-
     const publishers = req.body.present_publishers;
+    const { assistance } = req.body;
 
-    publishers.map(
-      async publisher =>
-        await Assistance.update(
-          { present: true },
-          {
-            where: {
-              [Op.and]: [
-                { meeting_id: meetingID },
-                { publisher_id: publisher },
-              ],
-            },
-          }
-        )
-    );
+    assistance.forEach(async function(key) {
+      await Assistance.update(
+        { present: key.present },
+        {
+          where: {
+            [Op.and]: [
+              { meeting_id: meetingID },
+              { publisher_id: key.publisher.id },
+            ],
+          },
+        }
+      );
+      // console.log(key, publishers[key]);
+    });
+
+    // Object.keys(publishers).forEach(async function(key) {
+    //   await Assistance.update(
+    //     { present: publishers[key] },
+    //     {
+    //       where: {
+    //         [Op.and]: [{ meeting_id: meetingID }, { publisher_id: key }],
+    //       },
+    //     }
+    //   );
+    //   // console.log(key, publishers[key]);
+    // });
 
     return res.json({ message: 'WORKS' });
   }
 
   async index(req, res) {
-    const assistance = await Assistance.findAll();
+    const { meeting_id, group_id } = req.params;
+
+    const assistance = await Assistance.findAll({
+      where: { meeting_id },
+      include: {
+        model: Publisher,
+        // order: [[Publisher, 'name']],
+        as: 'publisher',
+        attributes: ['id', 'group_id', 'name'],
+        order: ['name', 'ASC'],
+        where: {
+          group_id,
+        },
+      },
+    });
 
     return res.json(assistance);
   }

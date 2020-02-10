@@ -25,6 +25,11 @@ module.exports = {
         defaultValue: false,
         allowNull: true,
       },
+      first_acess: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

@@ -37,6 +37,7 @@ class SessionController {
       user: {
         id,
         name,
+        email,
         admin,
         publisher,
       },

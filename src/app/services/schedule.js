@@ -6,10 +6,11 @@ import {
 
 import publishers from './insertPublishers';
 
-cron.schedule('*/30 * * * * *', async () => {
+cron.schedule('*/15 * * * * *', async () => {
   // await createMidweekMeeting();
-});
-
-cron.schedule('*/30 * * * * *', async () => {
   // await createWeekendMeeting();
 });
+
+// cron.schedule('*/30 * * * * *', async () => {
+//   // await createWeekendMeeting();
+// });
