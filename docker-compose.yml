@@ -1,93 +1,76 @@
-version: '3'
-
-services:
-
-  nodejs-vila-dalila:
-    container_name: nodejs-vila-dalila
-    build: '.'
-    volumes:
-      - .:/home/node/api
-      - /home/node/api/node_modules
-    depends_on:
-      - postgres-vila-dalila
-    networks:
-      - app-connect
-    ports:
-      - '3001:3001'
-
-  postgres-vila-dalila:
-    container_name: postgres-vila-dalila
-    image: postgres:11
-    restart: unless-stopped
-    volumes:
-      - postgres-vila-dalila-data:/data
-    environment: 
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS} 
-    networks:
-      - app-connect
-
-volumes:
-  postgres-vila-dalila-data:
-
-networks:
-  app-connect:
-      driver: bridge
-
-# version: "3"
-
-# services:
-#   app:
-#     build: .
-#     ports: 
-#       - "3001:3001"
-#     command: yarn dev
-#     links:
-#       - "db:database"
-#   postgres:
-#     container_name: postgres
-#     image: postgres
-#     environment:
-#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-#       POSTGRES_USER: ${POSTGRES_USER}
-#       POSTGRES_DB: ${POSTGRES_DATABASE}
-#     ports:
-#       - "5432:5432"
-#     restart: unless-stopped
-
-
 # version: '3'
 
 # services:
-#   vila-dalila-api:
-#     build: .
-#     container_name: api-vila-dalila
+
+#   nodejs-vila-dalila:
+#     container_name: nodejs-vila-dalila
+#     build: '.'
 #     volumes:
 #       - .:/home/node/api
 #       - /home/node/api/node_modules
-#     ports:
-#       - "3001:3001"
-#     command: yarn dev
 #     depends_on:
-#       - vila-dalila-postgres
+#       - postgres-vila-dalila
 #     networks:
-#       - network-vila-dalila
-#   vila-dalila-postgres:
-#     image: postgres:11
+#       - app-connect
+#     ports:
+#       - '3001:3001'
+
+#   postgres-vila-dalila:
 #     container_name: postgres-vila-dalila
-#     environment:
-#       - POSTGRES_DB=${DB_NAME}
-#       - POSTGRES_PASSWORD=${DB_PASS}
+#     image: postgres:11
+#     restart: unless-stopped
 #     volumes:
 #       - postgres-vila-dalila-data:/data
+#     environment: 
+#       POSTGRES_DB: ${DB_NAME}
+#       POSTGRES_USER: ${DB_USER}
+#       POSTGRES_PASSWORD: ${DB_PASS} 
 #     networks:
-#       - network-vila-dalila
+#       - app-connect
 
 # volumes:
 #   postgres-vila-dalila-data:
 
 # networks:
-#   network-vila-dalila:
-#     driver: bridge
+#   app-connect:
+#       driver: bridge
+
+
+
+# ESSE FUNCIONOU
+version: '3'
+
+services:
+  vila-dalila-api:
+    build: .
+    container_name: vila-dalila-api
+    volumes:
+      - .:/home/node/api
+      - /home/node/api/node_modules
+    ports:
+      - '3001:3001'
+    depends_on:
+      - vila-dalila-postgres
+    networks:
+      - vila-dalila-network
+      
+  vila-dalila-postgres:
+    image: postgres:11
+    container_name: vila-dalila-postgres
+    environment:
+      # - ALLOW_EMPTY_PASSWORD=no
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS} 
+    volumes:
+      - vila-dalila-postgres-data:/data
+    networks:
+      - vila-dalila-network
+
+volumes:
+  vila-dalila-postgres-data:
+
+networks:
+  vila-dalila-network:
+    driver: bridge
 

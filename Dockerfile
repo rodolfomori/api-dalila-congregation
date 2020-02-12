@@ -1,20 +1,26 @@
-FROM node:lts-alpine
+# FROM node:lts-alpine 
+ 
+# RUN mkdir -p /home/node/api/node_modules && chown -R node:node /home 
+ 
+# WORKDIR /home/node/api 
+ 
+# COPY package.json yarn.* ./ 
+ 
+# USER node 
+ 
+# RUN yarn 
+ 
+# COPY --chown=node:node . .
+ 
+# EXPOSE 3001
 
-RUN mkdir -p /home/node/api/node_modules && chown -R node:node /home
+# CMD ["yarn", "dev"]
 
-WORKDIR /home/node/api
+# RUN chmod +x init.sh.
 
-COPY package.json yarn.* ./
+# ENTRYPOINT [ "./init.sh" ] 
 
-USER node
-
-RUN yarn
-
-COPY --chown=node:node . . 
-
-EXPOSE 3333
-
-ENTRYPOINT [ "./init.sh" ]
+# CMD ["yarn", "dev"]
 # FROM node:10-alpine
 
 # WORKDIR /usr/app
@@ -25,22 +31,22 @@ ENTRYPOINT [ "./init.sh" ]
 # COPY . .
 
 # EXPOSE 3001
-# CMD ["yarn","dev"]
+  
+#ESSE FUNCIONOU
+FROM node:lts-alpine
 
-# FROM node:lts-alpine
+RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
 
-# RUN mkdir -p /home/node/api/node_modules && chown -R node:node /home/node/api
+WORKDIR /usr/src/app
 
-# WORKDIR /home/node/api
+COPY package.json yarn.* ./
 
-# COPY package.json yarn.* ./
+USER node
 
-# USER node
+RUN yarn
 
-# RUN yarn
+COPY --chown=node:node . .
 
-# COPY --chown=node:node . .
+EXPOSE 3001
 
-# EXPOSE 3001
-
-# CMD ["yarn", "dev"]
+CMD ["yarn", "dev"]
