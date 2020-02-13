@@ -11,6 +11,7 @@ class App {
 
     this.middlewares();
     this.routes();
+    console.log('Foooooi');
   }
 
   middlewares() {
