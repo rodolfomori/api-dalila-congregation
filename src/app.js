@@ -2,7 +2,7 @@ import './database';
 
 import './app/services/schedule';
 import express from 'express';
-
+import cors from 'cors';
 import routes from './routes';
 
 class App {
@@ -11,11 +11,11 @@ class App {
 
     this.middlewares();
     this.routes();
-    console.log('Foooooi');
   }
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(cors());
   }
 
   routes() {

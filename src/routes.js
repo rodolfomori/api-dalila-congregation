@@ -15,7 +15,7 @@ const routes = new Router();
 routes.post('/session', SessionController.store);
 routes.post('/users', UserController.store);
 
-routes.use(authMiddleware); // MIDDLEWARE TOKEN JWT
+// routes.use(authMiddleware); // MIDDLEWARE TOKEN JWT
 
 routes.get('/groups', GroupController.index);
 routes.get('/groups/:id', GroupController.show);
