@@ -4,13 +4,12 @@ import {
   createWeekendMeeting,
 } from './createMeetingsService';
 
-import publishers from './insertPublishers';
+// cron.schedule('* * 23 * * 0', async () => {
+//   await createMidweekMeeting();
+//   await createWeekendMeeting();
+// });
 
-cron.schedule('*/15 * * * * *', async () => {
+cron.schedule('*/30 * * * * *', async () => {
   // await createMidweekMeeting();
   // await createWeekendMeeting();
 });
-
-// cron.schedule('*/30 * * * * *', async () => {
-//   // await createWeekendMeeting();
-// });

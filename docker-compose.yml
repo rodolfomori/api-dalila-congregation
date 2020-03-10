@@ -49,28 +49,28 @@ services:
       - /home/node/api/node_modules
     ports:
       - '3001:3001'
-    depends_on:
-      - vila-dalila-postgres
-    networks:
-      - vila-dalila-network
+    # depends_on:
+    #   - vila-dalila-postgres
+    # networks:
+    #   - vila-dalila-network
       
-  vila-dalila-postgres:
-    image: postgres:11
-    container_name: vila-dalila-postgres
-    environment:
-      # - ALLOW_EMPTY_PASSWORD=no
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS} 
-    volumes:
-      - vila-dalila-postgres-data:/data
-    networks:
-      - vila-dalila-network
+#   vila-dalila-postgres:
+#     image: postgres:11
+#     container_name: vila-dalila-postgres
+#     environment:
+#       # - ALLOW_EMPTY_PASSWORD=no
+#       POSTGRES_DB: ${DB_NAME}
+#       POSTGRES_USER: ${DB_USER}
+#       POSTGRES_PASSWORD: ${DB_PASS} 
+#     volumes:
+#       - vila-dalila-postgres-data:/data
+#     networks:
+#       - vila-dalila-network
 
-volumes:
-  vila-dalila-postgres-data:
+# volumes:
+#   vila-dalila-postgres-data:
 
-networks:
-  vila-dalila-network:
-    driver: bridge
+# networks:
+#   vila-dalila-network:
+#     driver: bridge
 

@@ -1,12 +1,4 @@
-import {
-  getDate,
-  getTime,
-  getMonth,
-  getYear,
-  format,
-  parseISO,
-  addDays,
-} from 'date-fns';
+import { format, addDays } from 'date-fns';
 import Meeting from '../models/Meeting';
 import Setting from '../models/Setting';
 import listPublishers from './insertPublishers';
@@ -21,6 +13,8 @@ export async function createMidweekMeeting() {
     'yyyy-MM-dd'
   )}T${midweek_time}-03:00`;
 
+  // const meetingMidweekDate = '2020-03-03T20:00:00-03:00';
+
   const date = await Meeting.findOne({
     where: { date: meetingMidweekDate },
   });
@@ -30,14 +24,14 @@ export async function createMidweekMeeting() {
   }
 
   const { id } = await Meeting.create({
-    date: '2020-02-04T20:00:00-03:00',
+    date: meetingMidweekDate,
     midweek: true,
     special_week: false,
   });
 
   listPublishers(id);
 
-  // "date":"2019-12-29T18:00:00-03:00"
+  return 'Done';
 }
 
 export async function createWeekendMeeting() {
@@ -50,6 +44,8 @@ export async function createWeekendMeeting() {
     'yyyy-MM-dd'
   )}T${weekend_time}-03:00`;
 
+  // const meetingWeekendDate = '2020-03-07T19:00:00-03:00';
+
   const date = await Meeting.findOne({
     where: { date: meetingWeekendDate },
   });
@@ -59,12 +55,12 @@ export async function createWeekendMeeting() {
   }
 
   const { id } = await Meeting.create({
-    date: '2020-02-08T20:00:00-03:00',
+    date: meetingWeekendDate,
     midweek: false,
     special_week: false,
   });
 
   listPublishers(id);
 
-  // "date":"2019-12-29T18:00:00-03:00"
+  return 'Done';
 }

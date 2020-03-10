@@ -1,4 +1,6 @@
-import { Router } from 'express';
+import cors from 'cors';
+
+import express, { Router } from 'express';
 
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
@@ -7,10 +9,14 @@ import SettingController from './app/controllers/SettingController';
 import PublisherController from './app/controllers/PublisherController';
 import MeetingController from './app/controllers/MeetingController';
 import AssistanceController from './app/controllers/AssistanceController';
+import ModalityController from './app/controllers/ModalityController';
 
-import authMiddleware from './app/middlewares/auth';
+// import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
+
+// Then pass them to cors:
+express().use(cors());
 
 routes.post('/session', SessionController.store);
 routes.post('/users', UserController.store);
@@ -24,6 +30,7 @@ routes.put('/groups/:id', GroupController.update);
 
 routes.get('/users', UserController.index);
 routes.put('/users', UserController.update);
+routes.delete('/users/:id', UserController.delete);
 
 // routes.get('/groups/:group_id/users', UserController.index);
 // routes.put('/groups/:group_id/users', UserController.update);
@@ -48,5 +55,10 @@ routes.get(
 
 routes.post('/assistance', AssistanceController.store);
 routes.put('/assistance/:meeting_id', AssistanceController.update);
+
+routes.get('/modalities', ModalityController.index);
+routes.get('/modalities/:id', ModalityController.show);
+routes.post('/modalities', ModalityController.store);
+// routes.put('/modalities/:id', ModalityController.update);
 
 export default routes;

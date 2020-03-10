@@ -6,10 +6,11 @@ import Publisher from '../app/models/Publisher';
 import Setting from '../app/models/Setting';
 import User from '../app/models/User';
 import Assistance from '../app/models/Assistance';
+import Modality from '../app/models/Modality'
 
 import databaseConfig from '../config/database';
 
-const models = [Publisher, User, Group, Meeting, Setting, Assistance];
+const models = [Publisher, User, Group, Meeting, Setting, Assistance,Modality];
 
 class Database {
   constructor() {

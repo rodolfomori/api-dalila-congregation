@@ -13,22 +13,6 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
-        {
-          name: 'Felipe',
-          email: 'felipe@email.com',
-          password_hash: bcrypt.hashSync('123456', 8),
-          admin: false,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-        {
-          name: 'Paulo',
-          email: 'paulo@email.com',
-          password_hash: bcrypt.hashSync('123456', 8),
-          admin: false,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
       ],
       {}
     );

@@ -20,6 +20,7 @@ class App {
 
   routes() {
     this.server.use(routes);
+    routes.use(cors());
   }
 }
 

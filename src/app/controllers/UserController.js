@@ -123,6 +123,14 @@ class UserController {
 
     return res.json(users);
   }
+
+  async delete(req, res) {
+    await User.destroy({
+      where: { id: req.params.id },
+    });
+
+    return res.json('User Deleted');
+  }
 }
 
 export default new UserController();
