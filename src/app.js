@@ -14,15 +14,12 @@ class App {
   }
 
   middlewares() {
-    this.server.use(cors({
-      origin:'https://viladalila.site/'
-    }));
+    this.server.use(cors());
     this.server.use(express.json());
-  }
+ }
 
   routes() {
     this.server.use(routes);
-    routes.use(cors());
   }
 }
 
