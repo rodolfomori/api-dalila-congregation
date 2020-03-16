@@ -6,11 +6,23 @@ import Publisher from '../app/models/Publisher';
 import Setting from '../app/models/Setting';
 import User from '../app/models/User';
 import Assistance from '../app/models/Assistance';
-import Modality from '../app/models/Modality'
+import Modality from '../app/models/Modality';
+import Building from '../app/models/Building';
+import Activity from '../app/models/Activity';
 
 import databaseConfig from '../config/database';
 
-const models = [Publisher, User, Group, Meeting, Setting, Assistance,Modality];
+const models = [
+  Publisher,
+  User,
+  Group,
+  Meeting,
+  Setting,
+  Assistance,
+  Modality,
+  Building,
+  Activity,
+];
 
 class Database {
   constructor() {
@@ -22,7 +34,9 @@ class Database {
 
     models
       .map(model => model.init(this.connection))
-      .map(model => model?.associate && model.associate(this.connection.models));
+      .map(
+        model => model?.associate && model.associate(this.connection.models)
+      );
   }
 }
 export default new Database();

@@ -7,45 +7,82 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      territory: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      block: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'Sem Nome',
       },
       type: {
+        // prédio, condominio, em construção.
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 'Sem Nome',
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      quantity: {
+      blocks_quantity: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      modality_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'modalities', key: 'id' }, // users belongs to group
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        defaultValue: 'N/D',
         allowNull: true,
       },
-      frequency: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
-      ativity_days: {
+      floors_quantity: {
         type: Sequelize.STRING,
+        defaultValue: 'N/D',
         allowNull: true,
       },
-      coordinator: {
+      apartments_quantity: {
         type: Sequelize.STRING,
+        defaultValue: 'N/D',
         allowNull: true,
       },
-      publishers: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      lobby: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      intercom: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      public_access: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m1: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m2: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m3: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m4: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m5: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      m6: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      visit: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       observations: {
         type: Sequelize.STRING,

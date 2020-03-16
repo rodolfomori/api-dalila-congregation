@@ -10,7 +10,8 @@ import PublisherController from './app/controllers/PublisherController';
 import MeetingController from './app/controllers/MeetingController';
 import AssistanceController from './app/controllers/AssistanceController';
 import ModalityController from './app/controllers/ModalityController';
-
+import BuildingController from './app/controllers/BuildingController';
+import ActivityController from './app/controllers/ActivityController';
 // import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
@@ -60,5 +61,13 @@ routes.get('/modalities', ModalityController.index);
 routes.get('/modalities/:id', ModalityController.show);
 routes.post('/modalities', ModalityController.store);
 // routes.put('/modalities/:id', ModalityController.update);
+
+routes.get('/buildings', BuildingController.index);
+routes.get('/buildings/:id', BuildingController.show);
+routes.post('/buildings', BuildingController.store);
+
+routes.get('/activities', ActivityController.index);
+// routes.get('/buildings/:id', BuildingController.show);
+routes.post('/activities', ActivityController.store);
 
 export default routes;
