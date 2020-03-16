@@ -31,8 +31,6 @@ class AssistanceController {
   }
 
   async update(req, res) {
-    console.log(req.body);
-    console.log(req.params);
 
     const meetingID = req.params.meeting_id;
     const publishers = req.body.present_publishers;

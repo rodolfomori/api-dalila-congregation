@@ -30,41 +30,11 @@ class ModalityController {
     });
   }
 
-  // async index(req, res) {
-  //   const modalities = await Modality.findAll({
-  //     order: [['number', 'ASC']],
-  //   });
-
-  //   return res.json({ modalities });
-  // }
-
   async index(req, res) {
     const modalities = await Modality.findAll();
 
-    return res.json({ modalities });
+    return res.json(modalities);
   }
-
-  //   async update(req, res) {
-  //     const schema = Yup.object().shape({
-  //       number: Yup.number().required(),
-  //       leader: Yup.string().required(),
-  //       assistant: Yup.string().required(),
-  //     });
-
-  //     if (!(await schema.isValid(req.body))) {
-  //       return res.status(400).json({ error: 'Validations fails' });
-  //     }
-
-  //     const group = await Group.findByPk(req.params.id);
-
-  //     const { number, leader, assistant } = await group.update(req.body);
-
-  //     return res.json({
-  //       number,
-  //       leader,
-  //       assistant,
-  //     });
-  //   }
 
   async show(req, res) {
     const modality = await Modality.findOne({

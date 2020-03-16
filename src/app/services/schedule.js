@@ -4,12 +4,7 @@ import {
   createWeekendMeeting,
 } from './createMeetingsService';
 
-// cron.schedule('* * 23 * * 0', async () => {
-//   await createMidweekMeeting();
-//   await createWeekendMeeting();
-// });
-
-cron.schedule('*/30 * * * * *', async () => {
-  // await createMidweekMeeting();
-  // await createWeekendMeeting();
+cron.schedule('0 6 * * 0 ', async () => {
+  await createMidweekMeeting();
+  await createWeekendMeeting();
 });
