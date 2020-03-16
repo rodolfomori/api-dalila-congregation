@@ -2,8 +2,6 @@ import cors from 'cors';
 
 import express, { Router } from 'express';
 
-const server = experess();
-
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
 import GroupController from './app/controllers/GroupController';
@@ -14,6 +12,8 @@ import AssistanceController from './app/controllers/AssistanceController';
 import ModalityController from './app/controllers/ModalityController';
 import BuildingController from './app/controllers/BuildingController';
 import ActivityController from './app/controllers/ActivityController';
+
+const server = express();
 // import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
