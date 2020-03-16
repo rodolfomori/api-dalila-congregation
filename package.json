@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/server.js",
     "dev": "nodemon -L ./src/server.js",
-    "deploy": "docker-compose up --build -d"
+    "deploy": "docker-compose up --build -d",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
   },
   "author": "",
   "license": "ISC",
