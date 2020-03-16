@@ -17,7 +17,7 @@ import ActivityController from './app/controllers/ActivityController';
 const routes = new Router();
 
 // Then pass them to cors:
-this.server.options('*', cors()); // <- incluir antes das rotas
+express().use(cors());
 
 routes.post('/session', SessionController.store);
 routes.post('/users', UserController.store);
