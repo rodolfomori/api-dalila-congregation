@@ -8,16 +8,32 @@ import routes from './routes';
 class App {
   constructor() {
     this.server = express();
-
     this.middlewares();
     this.routes();
   }
 
   middlewares() {
-    this.server.use(cors());
-    this.server.options('*', cors()) 
     this.server.use(express.json());
- }
+
+    const whitelist = [
+      'http://viladalila.site',
+      'https://viladalila.site',
+      'http://www.viladalila.site',
+      'https://www.viladalila.site',
+    ];
+
+    const corsOptions = {
+      origin(origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+    };
+
+    this.server.use(cors(corsOptions));
+  }
 
   routes() {
     this.server.use(routes);
