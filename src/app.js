@@ -33,6 +33,7 @@ class App {
     };
 
     this.server.use(cors(corsOptions));
+    this.server.use(cors());
   }
 
   routes() {
