@@ -8,6 +8,7 @@ class Activity extends Model {
         publishers: DataTypes.STRING,
         observations: DataTypes.STRING,
         apartment: DataTypes.STRING,
+        phone: DataTypes.STRING,
       },
       {
         sequelize,

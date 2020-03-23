@@ -5,6 +5,7 @@ class Modality extends Model {
     super.init(
       {
         name: DataTypes.STRING,
+        nickname: DataTypes.STRING,
         number: DataTypes.INTEGER,
         information: DataTypes.STRING,
       },

@@ -1,27 +1,54 @@
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import Activity from '../models/Activity';
+import Building from '../models/Building';
+import Modality from '../models/Modality';
 
 class ActivityController {
   async store(req, res) {
-    // const schema = Yup.object().shape({
-    //   name: Yup.string().required(),
-    //   number: Yup.number().required(),
-    //   information: Yup.string(),
-    // });
+    const schema = Yup.object().shape({
+      building_id: Yup.number().required(),
+      date: Yup.date().required(),
+      modality_id: Yup.number().required(),
+      publishers: Yup.string().required(),
+      observations: Yup.string().required(),
+      apartment: Yup.string().required(),
+      phone: Yup.string(),
+    });
 
-    // if (!(await schema.isValid(req.body))) {
-    //   return res.status(400).json({ error: 'Validations fails' });
-    // }
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validations fails' });
+    }
 
-    await Activity.create(req.body);
-
-    return res.json(req.body);
+    try {
+      await Activity.create(req.body);
+      return res.json(req.body);
+    } catch (err) {
+      return res.status(400).json({ error: 'Validations fails' });
+    }
   }
 
   async index(req, res) {
-    const activities = await Activity.findAll();
-
-    return res.json({ activities });
+    try {
+      const activities = await Activity.findAll({
+        include: [
+          {
+            model: Building,
+            as: 'building',
+            // attributes: ['id', 'name'],
+            // order: ['name', 'ASC'],
+          },
+          {
+            model: Modality,
+            as: 'modality',
+            // attributes: ['id', 'name'],
+            // order: ['name', 'ASC'],
+          },
+        ],
+      });
+      return res.json(activities);
+    } catch (err) {
+      return res.status(400).json({ error: 'Validations fails' });
+    }
   }
 
   // async show(req, res) {

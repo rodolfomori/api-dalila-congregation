@@ -30,12 +30,16 @@ module.exports = {
         allowNull: false,
       },
       observations: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: true,
       },
       apartment: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
