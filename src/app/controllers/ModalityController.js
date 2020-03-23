@@ -31,17 +31,13 @@ class ModalityController {
   }
 
   async index(req, res) {
-    const modalities = await Modality.findAll();
+    try {
+      const modalities = await Modality.findAll();
 
-    return res.json(modalities);
-  }
-
-  async show(req, res) {
-    const modality = await Modality.findOne({
-      where: { id: req.params.id },
-    });
-
-    return res.json(modality);
+      return res.json(modalities);
+    } catch (err) {
+      return res.status(500).json({ error: 'Fail in find out modalities' });
+    }
   }
 }
 

@@ -16,14 +16,16 @@ class ActivityController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validations fails' });
+      return res
+        .status(400)
+        .json({ error: 'Validations fails in new activity' });
     }
 
     try {
       await Activity.create(req.body);
       return res.json(req.body);
     } catch (err) {
-      return res.status(400).json({ error: 'Validations fails' });
+      return res.status(400).json({ error: 'Fail at add new activity' });
     }
   }
 

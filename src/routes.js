@@ -59,16 +59,13 @@ routes.post('/assistance', AssistanceController.store);
 routes.put('/assistance/:meeting_id', AssistanceController.update);
 
 routes.get('/modalities', ModalityController.index);
-routes.get('/modalities/:id', ModalityController.show);
 routes.post('/modalities', ModalityController.store);
-// routes.put('/modalities/:id', ModalityController.update);
 
 routes.get('/buildings', BuildingController.index);
 routes.get('/buildings/:id', BuildingController.show);
 routes.post('/buildings', BuildingController.store);
 
 routes.get('/activities', ActivityController.index);
-// routes.get('/buildings/:id', BuildingController.show);
 routes.post('/activities', ActivityController.store);
 
 export default routes;
