@@ -12,6 +12,7 @@ import AssistanceController from './app/controllers/AssistanceController';
 import ModalityController from './app/controllers/ModalityController';
 import BuildingController from './app/controllers/BuildingController';
 import ActivityController from './app/controllers/ActivityController';
+import SearchActivityDataTerritoriesAndBuildings from './app/controllers/SearchActivityDataTerritoriesAndBuildings';
 
 const server = express();
 // import authMiddleware from './app/middlewares/auth';
@@ -67,5 +68,10 @@ routes.post('/buildings', BuildingController.store);
 
 routes.get('/activities', ActivityController.index);
 routes.post('/activities', ActivityController.store);
+
+routes.post(
+  '/search-activity',
+  SearchActivityDataTerritoriesAndBuildings.index
+);
 
 export default routes;
