@@ -13,6 +13,7 @@ import ModalityController from './app/controllers/ModalityController';
 import BuildingController from './app/controllers/BuildingController';
 import ActivityController from './app/controllers/ActivityController';
 import SearchActivityDataTerritoriesAndBuildings from './app/controllers/SearchActivityDataTerritoriesAndBuildings';
+import SearchActivityDataPhone from './app/controllers/SearchActivityDataPhone';
 
 const server = express();
 // import authMiddleware from './app/middlewares/auth';
@@ -73,5 +74,7 @@ routes.post(
   '/search-activity',
   SearchActivityDataTerritoriesAndBuildings.index
 );
+
+routes.post('/search-phone', SearchActivityDataPhone.index);
 
 export default routes;

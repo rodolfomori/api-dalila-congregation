@@ -74,6 +74,7 @@ class SearchActivityDataTerritoriesAndBuildings {
         });
         return res.json(activities);
       }
+      return null;
     } catch (err) {
       return res.status(400).json({ error: 'Fail at search a activity' });
     }
